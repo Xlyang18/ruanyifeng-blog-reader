@@ -1,0 +1,19 @@
+{
+  "name": "ruanyifeng-blog-reader",
+  "version": "1.0.0",
+  "description": "阮一峰博客阅读助手：在页面上标注已读/未读，并在有新文章时提醒",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/e2e.mjs && node scripts/e2e-alert.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.64.1"
+  },
+  "dependencies": {
+    "idb": "^8.0.4"
+  }
+}
