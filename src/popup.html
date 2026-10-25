@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; width: 380px; max-height: 560px;
+    font: 13px/1.5 -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background: #fbfbfd; color: #1c1c1e;
+  }
+  header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 14px 10px; border-bottom: 1px solid #e7e7ea;
+    position: sticky; top: 0; background: #fbfbfd; z-index: 2;
+  }
+  header h1 { margin: 0; font-size: 14px; font-weight: 700; flex: 1; }
+  header .brand { width: 18px; height: 18px; border-radius: 5px; background: linear-gradient(135deg,#e5484d,#f7a09b); }
+  #stats { display: flex; gap: 6px; padding: 10px 14px 6px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
+  .chip.read { background: #e7f6ec; color: #0b7a3b; }
+  .chip.unread { background: #fff4e5; color: #9a3412; }
+  .chip.new { background: #ffe9e9; color: #8b1d1d; }
+  .tabs { display: flex; gap: 4px; padding: 6px 14px 8px; }
+  .tab {
+    flex: 1; padding: 6px 0; text-align: center; font-size: 12px; font-weight: 600;
+    border: 1px solid #e2e2e6; background: #fff; border-radius: 8px; cursor: pointer; color: #555;
+  }
+  .tab.active { background: #1c1c1e; border-color: #1c1c1e; color: #fff; }
+  #list { max-height: 300px; overflow-y: auto; padding: 0 8px 8px; }
+  .row { padding: 8px 8px; border-radius: 8px; }
+  .row:hover { background: #f1f1f4; }
+  .row .title { display: block; color: #0a58c9; text-decoration: none; font-size: 12.5px; line-height: 1.45; }
+  .row.read .title { color: #6b7280; }
+  .row .meta { display: flex; gap: 6px; align-items: center; margin-top: 3px; font-size: 11px; color: #8a8a90; }
+  .row .tag { padding: 0 6px; border-radius: 999px; }
+  .row .tag.new { background: #ffe9e9; color: #8b1d1d; }
+  .row .tag.read { background: #eef0f3; color: #4b5563; }
+  .row .actions { margin-top: 4px; }
+  .row .actions button {
+    font-size: 11px; padding: 2px 8px; border-radius: 6px; border: 1px solid #dcdce2;
+    background: #fff; color: #444; cursor: pointer;
+  }
+  .row .actions button:hover { background: #f1f1f4; }
+  .empty { padding: 18px 10px; text-align: center; color: #9a9aa2; font-size: 12px; }
+  footer { padding: 10px 14px 14px; border-top: 1px solid #e7e7ea; display: flex; flex-direction: column; gap: 8px; }
+  .status { font-size: 11px; color: #8a8a90; }
+  .status.err { color: #b42318; }
+  .buttons { display: flex; gap: 8px; }
+  button.primary, button.ghost {
+    flex: 1; padding: 7px 0; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  button.primary { background: #1c1c1e; color: #fff; border: 1px solid #1c1c1e; }
+  button.ghost { background: #fff; color: #333; border: 1px solid #dcdce2; }
+  button:disabled { opacity: .55; cursor: default; }
+  .hint { font-size: 10.5px; color: #a0a0a7; line-height: 1.4; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand"></div>
+    <h1>阮一峰博客阅读助手</h1>
+  </header>
+
+  <div id="stats"></div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="unread">未读</div>
+    <div class="tab" data-tab="read">已读</div>
+  </div>
+
+  <div id="list"></div>
+
+  <footer>
+    <div id="status" class="status"></div>
+    <div class="buttons">
+      <button id="check" class="primary">立即检查更新</button>
+      <button id="scan" class="ghost">导入历史文章</button>
+    </div>
+    <div class="hint">已读判定：文章页滚动到 90% 即自动标为已读。新文章提醒：每天首次启动 Chrome 时检查一次。</div>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
